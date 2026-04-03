@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나나 | 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f9f6f2;
+    --surface: #ffffff;
+    --surface2: #f3efe9;
+    --border: #e0d8ce;
+    --accent: #da7756;
+    --text: #2a1f18;
+    --text-sub: #6b5444;
+    --text-muted: #b0998a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    margin-bottom: 72px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--accent), #f5a882);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-desc {
+    color: #111111;
+    font-size: 15px;
+    max-width: 480px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #333333;
+  }
+
+  .meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .section {
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .work-grid { grid-template-columns: 1fr; } }
+
+  .work-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .work-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .work-card.wide {
+    grid-column: 1 / -1;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .work-card.wide .card-title { color: #ffffff; }
+  .work-card.wide .card-list li { color: #ffffff; border-bottom-color: rgba(255,255,255,0.2); }
+  .work-card.wide .card-list li::before { color: rgba(255,255,255,0.6); }
+
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .card-list { list-style: none; }
+
+  .card-list li {
+    font-size: 13.5px;
+    color: #333333;
+    font-weight: 400;
+    padding: 5px 0;
+    padding-left: 14px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-list li:last-child { border-bottom: none; }
+
+  .card-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  /* Strengths - 이모티콘 없는 깔끔한 카드 */
+  .strength-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) { .strength-grid { grid-template-columns: 1fr; } }
+
+  .strength-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: border-color 0.2s;
+  }
+
+  .strength-item:hover { border-color: var(--accent); }
+
+  .strength-title {
+    display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .strength-desc {
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* Next plan */
+  .plan-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 26px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .plan-item:hover { border-color: var(--accent); background: var(--surface2); }
+
+  .plan-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .plan-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .plan-desc {
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 56px 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 0 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>나나의 <span>11개월</span>,<br>그리고 그 다음</h1>
+    <p class="header-desc">레벨 디자인, 데이터 분석, AI 기반 툴 개발을 아우르며 포코링클과 포코포코 두 타이틀에서 실무를 수행해왔습니다.</p>
+    <div class="header-meta">
+      <span class="meta-item"><span class="meta-dot"></span>레벨전략셀 라이브옵스파트</span>
+      <span class="meta-item"><span class="meta-dot"></span>레벨디자인</span>
+      <span class="meta-item"><span class="meta-dot"></span>2025.05 — 현재</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>지난 11개월 업무 요약</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="card-label">Stage</div>
+        <div class="card-title">맵 제작 & 수정 (포코링클)</div>
+        <ul class="card-list">
+          <li>신규 맵 440개 제작</li>
+          <li>기존 맵 수정 작업 약 400건 수행</li>
+        </ul>
+      </div>
+      <div class="work-card">
+        <div class="card-label">Data Analysis</div>
+        <div class="card-title">데이터 분석 & 쿼리 (포코링클)</div>
+        <ul class="card-list">
+          <li>소프트런칭 데이터 분석 — AI 활용 쿼리 작성 본격화</li>
+          <li>코인 획득량 분석 → 예상치와 실제 수치 근접 확인</li>
+          <li>플레이타임 이상치 발견 → 백분위수 기반 중앙값(P50) 분석 방식 제안</li>
+        </ul>
+      </div>
+      <div class="work-card">
+        <div class="card-label">Tool Development</div>
+        <div class="card-title">툴 제작 & 자동화 (포코링클)</div>
+        <ul class="card-list">
+          <li>AI 기반 기믹 랜덤 조합 툴 자체 개발</li>
+          <li>Confluence 업무일지 자동 생성 및 매주 슬랙 링크 공유 자동화 (나나봇)</li>
+          <li>변경 빈도가 높은 레벨 관련 정보의 누락 방지를 위해 자발적으로 문서화 및 관리 체계 수립</li>
+        </ul>
+      </div>
+      <div class="work-card">
+        <div class="card-label">Contents</div>
+        <div class="card-title">아이데이션 & 품질관리 (포코링클)</div>
+        <ul class="card-list">
+          <li>신규 기믹 아이데이션 — 제안 아이디어 구상 단계까지 채택</li>
+          <li>자신 및 팀원 레벨 검수 중 오류 선제적 발견·수정</li>
+        </ul>
+      </div>
+      <div class="work-card wide">
+        <div class="card-title" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 18px;">포코포코 전환 후</div>
+        <ul class="card-list">
+          <li>파트원 데이터 분석 지원을 위한 Claude 프로젝트 활용 지침 문서 작성 및 공유</li>
+          <li>흰꽃 점수 설정 분석 — 로우 데이터 추출 및 방향 공유 → 파트 리더 점수 기준 수립에 기여</li>
+          <li>쿼리 아카이브 자동화 스크립트 작성 및 파트 배포 — 파트 전체 분석 효율 개선</li>
+          <li>실패 경험과 이어하기 간 상관관계 분석 — 아슬아슬한 실패와 이어하기 유도 간 직접적 상관관계 낮음을 확인, 추가 로그 반영 후 재분석 및 이어하기 발생에 영향을 주는 레벨 관련 지표 탐색 예정</li>
+          <li>맵 데이터 스캔·아카이브 툴 개발 진행 중 — 스테이지 정량 데이터 구축 및 분석 기반 마련 목적</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>강점 요약</h2>
+    </div>
+    <div class="strength-grid">
+      <div class="strength-item">
+        <div class="strength-title">복합 직무 역량</div>
+        <div class="strength-desc">레벨 디자인·데이터 분석·툴 개발을 병행 수행하며 단일 직무를 넘어선 기여 가능</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">빠른 적응력</div>
+        <div class="strength-desc">두 타이틀 온보딩을 거치며 상이한 게임 구조와 업무 환경에 빠르게 적응</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">데이터 자기주도성</div>
+        <div class="strength-desc">SQL을 직접 설계·운용하여 분석 요청 의존 없이 데이터에 독립적으로 접근</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">AI 활용 실무 적용</div>
+        <div class="strength-desc">분석·제작·자동화 전반에 AI 툴을 도입하여 업무 효율화 및 파트 내 자산화 주도</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">팀 기여 지향</div>
+        <div class="strength-desc">개인 결과물에 그치지 않고 지침·스크립트·아카이브 등 파트 전체가 활용 가능한 형태로 공유</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">품질 감수성</div>
+        <div class="strength-desc">레벨 검수 과정에서 자신 및 팀원의 오류를 선제적으로 발견·수정하며 완성도 제고에 기여</div>
+      </div>
+      <div class="strength-item">
+        <div class="strength-title">기획 기여</div>
+        <div class="strength-desc">입사 1년 이내 시점에 신규 기믹 아이데이션에서 제안한 아이디어가 실제 구상 단계까지 채택·발전됨</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>넥스트 플랜</h2>
+    </div>
+    <p style="font-size: 16px; color: #111111; font-weight: 500; margin-bottom: 24px; padding: 14px 18px; background: var(--surface); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;">
+      포코포코 레벨 디자이너로서 AI를 적극적으로 활용하여 레벨 디자인 업무의 효율과 질을 높이는 역할을 수행하며, 아래 방향으로 기여하고자 합니다.
+    </p>
+    <div class="plan-items">
+      <div class="plan-item">
+        <div class="plan-num">01</div>
+        <div>
+          <div class="plan-title">이어하기 유발 구조 규명</div>
+          <div class="plan-desc">AI를 활용한 데이터 추출 및 분석을 통해 스테이지 관련 지표와 이어하기 발생 간 상관관계를 검증하고, 도출된 설계 기준을 실제 맵 제작에 반영</div>
+        </div>
+      </div>
+      <div class="plan-item">
+        <div class="plan-num">02</div>
+        <div>
+          <div class="plan-title">행운 의존도 배치 기준 수립</div>
+          <div class="plan-desc">행운 요소 집중 스테이지의 매출 기여 유효성을 AI 기반 분석으로 검증한 뒤, 챕터 내 최적 수량·간격 기준안 설계</div>
+        </div>
+      </div>
+      <div class="plan-item">
+        <div class="plan-num">03</div>
+        <div>
+          <div class="plan-title">미사용 맵 AI 재가공</div>
+          <div class="plan-desc">활용되지 않는 기존 맵을 AI를 통해 재가공하여 활용 가능한 맵 풀 확장</div>
+        </div>
+      </div>
+      <div class="plan-item">
+        <div class="plan-num">04</div>
+        <div>
+          <div class="plan-title">인사이트 기반 운영 개선 제안</div>
+          <div class="plan-desc">레벨 데이터 분석 과정에서 발굴한 인사이트를 운영 액션으로 연결하여 실질적인 서비스 기여</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    NANA · LEVEL STRATEGY CELL · LIVE OPS PART · POKOPOKO TEAM
+  </div>
+
+</div>
+</body>
+</html>
