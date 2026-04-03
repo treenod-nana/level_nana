@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>나나 | 2026</title>
+<title>나나 | 레벨전략셀</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -42,9 +43,9 @@
   }
 
   .container {
-    max-width: 860px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 80px 32px;
+    padding: 120px 48px 80px;
     position: relative;
     z-index: 1;
   }
@@ -59,21 +60,18 @@
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.25;
     margin-bottom: 20px;
   }
 
   h1 span {
-    background: linear-gradient(135deg, var(--accent), #f5a882);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
   }
 
   .header-desc {
     color: #111111;
-    font-size: 15px;
-    max-width: 480px;
+    font-size: 18px;
+    max-width: 640px;
     line-height: 1.8;
     font-weight: 400;
   }
@@ -90,8 +88,9 @@
     align-items: center;
     gap: 8px;
     font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: #333333;
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .meta-dot {
@@ -120,7 +119,7 @@
 
   .section-num {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 14px;
     color: #ffffff;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -130,7 +129,7 @@
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -165,25 +164,22 @@
 
   .card-label {
     font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
+    font-size: 16px;
     text-transform: uppercase;
     margin-bottom: 12px;
     font-weight: 500;
+    color: var(--accent);
   }
 
   .card-title {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 14px;
+    font-size: 18px;
     color: var(--text);
   }
 
   .card-list { list-style: none; }
 
   .card-list li {
-    font-size: 13.5px;
+    font-size: 16.5px;
     color: #333333;
     font-weight: 400;
     padding: 5px 0;
@@ -195,11 +191,26 @@
   .card-list li:last-child { border-bottom: none; }
 
   .card-list li::before {
-    content: '→';
+    content: '•';
     position: absolute;
     left: 0;
-    color: var(--text-muted);
-    font-size: 11px;
+    color: var(--accent);
+    font-size: 13px;
+  }
+
+  /* 오렌지 배경 카드에서는 말머리 흰색 */
+  .work-card.wide .card-list li::before {
+    color: #ffffff;
+  }
+
+  /* — 대시를 → 화살표로 교체한 인라인 span */
+  .arrow {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .work-card.wide .arrow {
+    color: #ffffff;
   }
 
   /* Strengths - 이모티콘 없는 깔끔한 카드 */
@@ -224,7 +235,7 @@
   .strength-title {
     display: inline-block;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
     background: var(--accent);
@@ -234,7 +245,7 @@
   }
 
   .strength-desc {
-    font-size: 14px;
+    font-size: 17px;
     color: #333333;
     line-height: 1.7;
     font-weight: 400;
@@ -263,7 +274,7 @@
 
   .plan-num {
     font-family: 'DM Mono', monospace;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--accent);
     font-weight: 700;
     min-width: 28px;
@@ -271,14 +282,14 @@
   }
 
   .plan-title {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 6px;
   }
 
   .plan-desc {
-    font-size: 14px;
+    font-size: 17px;
     color: #333333;
     line-height: 1.7;
     font-weight: 400;
@@ -311,11 +322,11 @@
 <div class="container">
 
   <div class="header">
-    <h1>나나의 <span>11개월</span>,<br>그리고 그 다음</h1>
-    <p class="header-desc">레벨 디자인, 데이터 분석, AI 기반 툴 개발을 아우르며 포코링클과 포코포코 두 타이틀에서 실무를 수행해왔습니다.</p>
+    <h1>레벨전략셀 나나 —<br><span>무엇을 했고, 무엇을 할 것인가</span></h1>
+    <p class="header-desc">레벨 디자인, 데이터 분석, AI 기반 툴 개발을 아우르며<br>포코링클과 포코포코 두 타이틀에서 실무를 수행해왔습니다.</p>
     <div class="header-meta">
       <span class="meta-item"><span class="meta-dot"></span>레벨전략셀 라이브옵스파트</span>
-      <span class="meta-item"><span class="meta-dot"></span>레벨디자인</span>
+      <span class="meta-item"><span class="meta-dot"></span>레벨디자이너</span>
       <span class="meta-item"><span class="meta-dot"></span>2025.05 — 현재</span>
     </div>
   </div>
@@ -338,9 +349,9 @@
         <div class="card-label">Data Analysis</div>
         <div class="card-title">데이터 분석 & 쿼리 (포코링클)</div>
         <ul class="card-list">
-          <li>소프트런칭 데이터 분석 — AI 활용 쿼리 작성 본격화</li>
-          <li>코인 획득량 분석 → 예상치와 실제 수치 근접 확인</li>
-          <li>플레이타임 이상치 발견 → 백분위수 기반 중앙값(P50) 분석 방식 제안</li>
+          <li>소프트런칭 데이터 분석<br><span class="arrow">→</span> AI 활용 쿼리 작성 본격화</li>
+          <li>코인 획득량 분석<br><span class="arrow">→</span> 예상치와 실제 수치 근접 확인</li>
+          <li>플레이타임 이상치 발견<br><span class="arrow">→</span> 백분위수 기반 중앙값(P50) 분석 방식 제안</li>
         </ul>
       </div>
       <div class="work-card">
@@ -356,7 +367,7 @@
         <div class="card-label">Contents</div>
         <div class="card-title">아이데이션 & 품질관리 (포코링클)</div>
         <ul class="card-list">
-          <li>신규 기믹 아이데이션 — 제안 아이디어 구상 단계까지 채택</li>
+          <li>신규 기믹 아이데이션<br><span class="arrow">→</span> 제안 아이디어 구상 단계까지 채택</li>
           <li>자신 및 팀원 레벨 검수 중 오류 선제적 발견·수정</li>
         </ul>
       </div>
@@ -364,10 +375,10 @@
         <div class="card-title" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 18px;">포코포코 전환 후</div>
         <ul class="card-list">
           <li>파트원 데이터 분석 지원을 위한 Claude 프로젝트 활용 지침 문서 작성 및 공유</li>
-          <li>흰꽃 점수 설정 분석 — 로우 데이터 추출 및 방향 공유 → 파트 리더 점수 기준 수립에 기여</li>
-          <li>쿼리 아카이브 자동화 스크립트 작성 및 파트 배포 — 파트 전체 분석 효율 개선</li>
-          <li>실패 경험과 이어하기 간 상관관계 분석 — 아슬아슬한 실패와 이어하기 유도 간 직접적 상관관계 낮음을 확인, 추가 로그 반영 후 재분석 및 이어하기 발생에 영향을 주는 레벨 관련 지표 탐색 예정</li>
-          <li>맵 데이터 스캔·아카이브 툴 개발 진행 중 — 스테이지 정량 데이터 구축 및 분석 기반 마련 목적</li>
+          <li>흰꽃 점수 설정 분석<br><span class="arrow">→</span> 로우 데이터 추출 및 방향 공유로 파트 리더 점수 기준 수립에 기여</li>
+          <li>쿼리 아카이브 자동화 스크립트 작성 및 파트 배포<br><span class="arrow">→</span> 파트 전체 분석 효율 개선</li>
+          <li>실패 경험과 이어하기 간 상관관계 분석<br><span class="arrow">→</span> 아슬아슬한 실패와 이어하기 유도 간 직접적 상관관계 낮음을 확인<br><span class="arrow">→</span> 추가 로그 반영 후 재분석 및 이어하기 발생에 영향을 주는 레벨 관련 지표 탐색 예정</li>
+          <li>맵 데이터 스캔·아카이브 툴 개발 진행 중<br><span class="arrow">→</span> 스테이지 정량 데이터 구축 및 분석 기반 마련 목적</li>
         </ul>
       </div>
     </div>
@@ -378,7 +389,7 @@
   <div class="section">
     <div class="section-header">
       <span class="section-num">02</span>
-      <h2>강점 요약</h2>
+      <h2>실무로 증명된 강점</h2>
     </div>
     <div class="strength-grid">
       <div class="strength-item">
@@ -419,8 +430,8 @@
       <span class="section-num">03</span>
       <h2>넥스트 플랜</h2>
     </div>
-    <p style="font-size: 16px; color: #111111; font-weight: 500; margin-bottom: 24px; padding: 14px 18px; background: var(--surface); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;">
-      포코포코 레벨 디자이너로서 AI를 적극적으로 활용하여 레벨 디자인 업무의 효율과 질을 높이는 역할을 수행하며, 아래 방향으로 기여하고자 합니다.
+    <p style="font-size: 17px; color: #111111; font-weight: 400; margin-bottom: 24px; padding: 14px 18px; background: var(--surface); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;">
+      포코포코 레벨 디자이너로서 AI를 적극적으로 활용하여 레벨 디자인 업무의 효율과 질을 높이는 역할을 수행하고자 합니다.
     </p>
     <div class="plan-items">
       <div class="plan-item">
