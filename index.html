@@ -213,7 +213,26 @@
     color: #ffffff;
   }
 
-  /* Strengths - 이모티콘 없는 깔끔한 카드 */
+  .card-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(218, 119, 86, 0.4);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .card-link:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .work-card.wide .card-link {
+    color: #ffffff;
+    text-decoration-color: rgba(255,255,255,0.4);
+  }
+
+  .work-card.wide .card-link:hover {
+    text-decoration-color: #ffffff;
+  }
   .strength-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -350,7 +369,7 @@
         <div class="card-title">데이터 분석 & 쿼리 (포코링클)</div>
         <ul class="card-list">
           <li>소프트런칭 데이터 분석<br><span class="arrow">→</span> AI 활용 쿼리 작성 본격화</li>
-          <li>코인 획득량 분석<br><span class="arrow">→</span> 예상치와 실제 수치 근접 확인</li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1H5ZNl36UsJwBQSAx3DHQnjIU1JQ9OLaGtSvcTueEEvg/edit?gid=1137248241#gid=1137248241" target="_blank" class="card-link">코인 획득량 분석</a><br><span class="arrow">→</span> 예상치와 실제 수치 근접 확인</li>
           <li>플레이타임 이상치 발견<br><span class="arrow">→</span> 백분위수 기반 중앙값(P50) 분석 방식 제안</li>
         </ul>
       </div>
@@ -358,7 +377,7 @@
         <div class="card-label">Tool Development</div>
         <div class="card-title">툴 제작 & 자동화 (포코링클)</div>
         <ul class="card-list">
-          <li>AI 기반 기믹 랜덤 조합 툴 자체 개발</li>
+          <li><a href="https://treenod-nana.github.io/pokolinkle_gimmick_random/" target="_blank" class="card-link">AI 기반 기믹 랜덤 조합 툴 자체 개발</a></li>
           <li>Confluence 업무일지 자동 생성 및 매주 슬랙 링크 공유 자동화 (나나봇)</li>
           <li>변경 빈도가 높은 레벨 관련 정보의 누락 방지를 위해 자발적으로 문서화 및 관리 체계 수립</li>
         </ul>
@@ -375,9 +394,9 @@
         <div class="card-title" style="font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 18px;">포코포코 전환 후</div>
         <ul class="card-list">
           <li>파트원 데이터 분석 지원을 위한 Claude 프로젝트 활용 지침 문서 작성 및 공유</li>
-          <li>흰꽃 점수 설정 분석<br><span class="arrow">→</span> 로우 데이터 추출 및 방향 공유로 파트 리더 점수 기준 수립에 기여</li>
-          <li>쿼리 아카이브 자동화 스크립트 작성 및 파트 배포<br><span class="arrow">→</span> 파트 전체 분석 효율 개선</li>
-          <li>실패 경험과 이어하기 간 상관관계 분석<br><span class="arrow">→</span> 아슬아슬한 실패와 이어하기 유도 간 직접적 상관관계 낮음을 확인<br><span class="arrow">→</span> 추가 로그 반영 후 재분석 및 이어하기 발생에 영향을 주는 레벨 관련 지표 탐색 예정</li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1BcnSodB5jQQNh3odjI_ZskJvWQSoIHDnK09PRqgH6pw/edit?gid=1096684244#gid=1096684244" target="_blank" class="card-link">흰꽃 점수 설정 분석</a><br><span class="arrow">→</span> 로우 데이터 추출 및 방향 공유로 파트 리더 점수 기준 수립에 기여</li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1kkiiW5jo5lEUdx7y7vFn8pxmaGKb3v6erQC71T4NOPc/edit?gid=670451283#gid=670451283" target="_blank" class="card-link">쿼리 아카이브</a> 자동화 스크립트 작성 및 파트 배포<br><span class="arrow">→</span> 파트 전체 분석 효율 개선</li>
+          <li><a href="https://docs.google.com/spreadsheets/d/14Hale06hbFQRU-6zfhFZGewERLLYcBVJDMee__B3mVU/edit?gid=443620119#gid=443620119" target="_blank" class="card-link">실패 경험과 이어하기 간 상관관계 분석</a><br><span class="arrow">→</span> 아슬아슬한 실패와 이어하기 유도 간 직접적 상관관계 낮음을 확인<br><span class="arrow">→</span> 추가 로그 반영 후 재분석 및 이어하기 발생에 영향을 주는 레벨 관련 지표 탐색 예정</li>
           <li>맵 데이터 스캔·아카이브 툴 개발 진행 중<br><span class="arrow">→</span> 스테이지 정량 데이터 구축 및 분석 기반 마련 목적</li>
         </ul>
       </div>
